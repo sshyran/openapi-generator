@@ -254,7 +254,6 @@ public class JSON {
             .registerTypeAdapterFactory(new org.openapitools.client.model.GmFruit.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new org.openapitools.client.model.HasOnlyReadOnly.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new org.openapitools.client.model.HealthCheckResult.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.InlineResponseDefault.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new org.openapitools.client.model.IsoscelesTriangle.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new org.openapitools.client.model.Mammal.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new org.openapitools.client.model.MapTest.CustomTypeAdapterFactory())

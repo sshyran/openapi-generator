@@ -317,6 +317,37 @@ public class InlineModelResolver {
     }
 
     /**
+     * Flatten inline models in content
+     *
+     * @param content target content
+     * @param name name of the inline schema if no title is found
+     */
+    private void flattenContent(Content content, String name) {
+        if (content == null || content.isEmpty()) {
+            return;
+        }
+
+        for (String contentType : content.keySet()) {
+            MediaType mediaType = content.get(contentType);
+            if (mediaType == null) {
+                continue;
+            }
+            Schema schema = mediaType.getSchema();
+            if (schema == null) {
+                continue;
+            }
+            String schemaName = resolveModelName(schema.getTitle(), name);
+            // Recursively gather/make inline models within this schema if any
+            gatherInlineModels(schema, schemaName);
+            if (isModelNeeded(schema)) {
+                // If this schema should be split into its own model, do so
+                Schema refSchema = this.makeSchema(schemaName, schema);
+                mediaType.setSchema(refSchema);
+            }
+        }
+    }
+
+    /**
      * Flatten inline models in RequestBody
      *
      * @param pathname  target pathname
@@ -468,6 +499,25 @@ public class InlineModelResolver {
             return;
         }
 
+        for (String key : responses.keySet()) {
+            ApiResponse response = responses.get(key);
+            String prefix = operation.getOperationId() == null ? "Inline" : operation.getOperationId();
+            String name;
+            if ("200".equals(key)) {
+                name = prefix + "Response";
+            } else {
+                name = prefix + "Response" + StringUtils.camelize(key);
+            }
+            flattenContent(response.getContent(), name);
+        }
+
+
+/*
+        ApiResponses responses = operation.getResponses();
+        if (responses == null) {
+            return;
+        }
+
         for (Map.Entry<String, ApiResponse> responsesEntry : responses.entrySet()) {
             String key = responsesEntry.getKey();
             ApiResponse response = responsesEntry.getValue();
@@ -476,6 +526,8 @@ public class InlineModelResolver {
             }
 
             Schema property = ModelUtils.getSchemaFromResponse(response);
+
+
             if (property instanceof ObjectSchema) {
                 ObjectSchema op = (ObjectSchema) property;
                 if (op.getProperties() != null && op.getProperties().size() > 0) {
@@ -542,8 +594,8 @@ public class InlineModelResolver {
                         }
                     }
                 }
-            }
-        }
+            }   
+        }*/
     }
 
     /**

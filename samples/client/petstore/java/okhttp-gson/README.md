@@ -193,7 +193,6 @@ Class | Method | HTTP request | Description
  - [GrandparentAnimal](docs/GrandparentAnimal.md)
  - [HasOnlyReadOnly](docs/HasOnlyReadOnly.md)
  - [HealthCheckResult](docs/HealthCheckResult.md)
- - [InlineResponseDefault](docs/InlineResponseDefault.md)
  - [IsoscelesTriangle](docs/IsoscelesTriangle.md)
  - [Mammal](docs/Mammal.md)
  - [MapTest](docs/MapTest.md)
