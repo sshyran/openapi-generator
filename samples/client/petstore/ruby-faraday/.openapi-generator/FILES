@@ -34,7 +34,6 @@ docs/Foo.md
 docs/FormatTest.md
 docs/HasOnlyReadOnly.md
 docs/HealthCheckResult.md
-docs/InlineResponseDefault.md
 docs/List.md
 docs/MapTest.md
 docs/MixedPropertiesAndAdditionalPropertiesClass.md
@@ -97,7 +96,6 @@ lib/petstore/models/foo.rb
 lib/petstore/models/format_test.rb
 lib/petstore/models/has_only_read_only.rb
 lib/petstore/models/health_check_result.rb
-lib/petstore/models/inline_response_default.rb
 lib/petstore/models/list.rb
 lib/petstore/models/map_test.rb
 lib/petstore/models/mixed_properties_and_additional_properties_class.rb
